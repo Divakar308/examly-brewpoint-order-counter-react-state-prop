@@ -1,0 +1,79 @@
+#app-container {
+  max-width: 760px;
+  margin: 40px auto;
+  padding: 24px;
+  background: #fdf8f3;
+  border-radius: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#page-title {
+  color: #6f4e37;
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+#total-items {
+  display: inline-block;
+  background: #6f4e37;
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+#main-nav {
+  display: flex;
+  gap: 16px;
+  border-bottom: 2px solid #e6d6c6;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+#main-nav a {
+  color: #6f4e37;
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#main-nav a:hover {
+  color: #c98a3f;
+}
+
+#order-summary {
+  padding: 8px;
+}
+
+#summary-title {
+  color: #6f4e37;
+  font-size: 20px;
+  margin-bottom: 14px;
+}
+
+#summary-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 16px;
+}
+
+.summary-row {
+  padding: 10px 12px;
+  border-bottom: 1px dashed #e6d6c6;
+  color: #555555;
+  font-size: 15px;
+}
+
+#empty-order {
+  color: #999999;
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+#total-amount {
+  color: #c98a3f;
+  font-size: 18px;
+  font-weight: bold;
+}

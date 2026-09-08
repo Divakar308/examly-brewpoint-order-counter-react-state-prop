@@ -1,0 +1,66 @@
+{
+  "slug": "brewpoint-order-counter-react-state-prop",
+  "questionId": "79080cde-2bc1-4050-ab2f-bf69767849f8",
+  "stack": "Node.js Mongo",
+  "type": "react",
+  "evaluation_types": [
+    "React Jest"
+  ],
+  "testcases": [
+    {
+      "name": "renders_page_title_and_nav_links",
+      "weightage": 0.1,
+      "evaluation_type": "React Jest"
+    },
+    {
+      "name": "renders_all_menu_rows_with_props",
+      "weightage": 0.1,
+      "evaluation_type": "React Jest"
+    },
+    {
+      "name": "renders_category_and_price_with_exact_labels",
+      "weightage": 0.1,
+      "evaluation_type": "React Jest"
+    },
+    {
+      "name": "shows_zero_quantity_and_zero_total_initially",
+      "weightage": 0.1,
+      "evaluation_type": "React Jest"
+    },
+    {
+      "name": "increases_quantity_on_plus_click",
+      "weightage": 0.1,
+      "evaluation_type": "React Jest"
+    },
+    {
+      "name": "decreases_quantity_and_never_goes_below_zero",
+      "weightage": 0.1,
+      "evaluation_type": "React Jest"
+    },
+    {
+      "name": "updates_total_items_count_in_header",
+      "weightage": 0.1,
+      "evaluation_type": "React Jest"
+    },
+    {
+      "name": "logs_total_items_change_using_useEffect",
+      "weightage": 0.1,
+      "evaluation_type": "React Jest"
+    },
+    {
+      "name": "validates_menu_item_props_with_proptypes",
+      "weightage": 0.1,
+      "evaluation_type": "React Jest"
+    },
+    {
+      "name": "shows_order_summary_with_total_amount_on_summary_route",
+      "weightage": 0.1,
+      "evaluation_type": "React Jest"
+    }
+  ],
+  "create_response": {
+    "success": true,
+    "message": "Project question Created",
+    "q_id": "79080cde-2bc1-4050-ab2f-bf69767849f8"
+  }
+}

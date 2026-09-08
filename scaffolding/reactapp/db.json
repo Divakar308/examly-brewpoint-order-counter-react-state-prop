@@ -1,0 +1,67 @@
+{
+  "injuries": [
+    {
+      "id": 1,
+      "playerName": "John Smith",
+      "team": "Lakers",
+      "injuryType": "Ankle Sprain",
+      "injuryDate": "2024-02-15",
+      "expectedReturn": "2024-03-15",
+      "status": "Active"
+    },
+    {
+      "id": 2,
+      "playerName": "Mike Johnson",
+      "team": "Warriors",
+      "injuryType": "Hamstring Pull",
+      "injuryDate": "2024-01-20",
+      "expectedReturn": "2024-02-20",
+      "status": "Recovering"
+    },
+    {
+      "id": 3,
+      "playerName": "David Williams",
+      "team": "Celtics",
+      "injuryType": "Concussion",
+      "injuryDate": "2024-02-01",
+      "expectedReturn": "2024-02-28",
+      "status": "Recovering"
+    },
+    {
+      "id": 4,
+      "playerName": "Chris Anderson",
+      "team": "Bulls",
+      "injuryType": "Knee Injury",
+      "injuryDate": "2024-01-05",
+      "expectedReturn": "2024-04-05",
+      "status": "Active"
+    },
+    {
+      "id": 5,
+      "playerName": "James Brown",
+      "team": "Heat",
+      "injuryType": "Shoulder Dislocation",
+      "injuryDate": "2024-02-10",
+      "expectedReturn": "2024-03-10",
+      "status": "Recovered"
+    },
+    {
+      "id": 6,
+      "playerName": "Robert Taylor",
+      "team": "Lakers",
+      "injuryType": "Wrist Fracture",
+      "injuryDate": "2024-01-25",
+      "expectedReturn": "2024-03-25",
+      "status": "Active"
+    },
+    {
+      "id": 7,
+      "playerName": "Thomas Martinez",
+      "team": "Celtics",
+      "injuryType": "Back Spasms",
+      "injuryDate": "2024-02-05",
+      "expectedReturn": "2024-02-25",
+      "status": "Recovering"
+    }
+  ]
+}

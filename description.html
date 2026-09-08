@@ -1,0 +1,196 @@
+<h2>BrewPoint Order Counter</h2>
+
+<h3>Project Statement</h3>
+<p>Karthik is a frontend developer at BrewPoint Technologies, a company that builds billing and ordering software for coffee shops. His team lead, Anitha, has assigned him a task to build an <b>Order Counter</b> where a cashier can increase or decrease the quantity of each menu item and view the final order summary on a separate page.</p>
+<p>Anitha tells Karthik:</p>
+<p><i>"The menu quantities must be controlled from the App component itself, not inside each row. Keep the menu list in useState inside App, pass each item's quantity down as props along with two handler functions, and use useEffect to log the total item count whenever it changes. The MenuItem component must be a presentational component that only receives props and calls the handlers. Add routing so the cashier can switch between the Menu page and the Summary page, and the summary must show the calculated total amount."</i></p>
+<p>Karthik must complete the task using React with State, Props, PropTypes, Hooks (useState, useEffect), Routing (react-router-dom) and Styling.</p>
+
+<h3>Tech Stack</h3>
+<ul>
+<li>React</li>
+<li>React Router DOM</li>
+<li>Port: 8081</li>
+</ul>
+
+<h3>Folder Structure</h3>
+<pre>
+reactapp/src/App.js
+reactapp/src/App.css
+reactapp/src/components/MenuItem.jsx
+reactapp/src/components/MenuItem.css
+reactapp/src/components/OrderSummary.jsx
+</pre>
+
+<h3>Component Details</h3>
+
+<h4>App.js</h4>
+<ul>
+<li>Imports and renders the MenuItem and OrderSummary components</li>
+<li>Uses the useState hook to hold the menu list as an array of objects, initialized to:
+<ul>
+<li><code>{ id: 1, itemName: "Espresso", category: "Hot", price: 120, quantity: 0 }</code></li>
+<li><code>{ id: 2, itemName: "Cold Brew", category: "Cold", price: 180, quantity: 0 }</code></li>
+<li><code>{ id: 3, itemName: "Cappuccino", category: "Hot", price: 150, quantity: 0 }</code></li>
+</ul>
+</li>
+<li>Calculates two derived values on every render:
+<ul>
+<li><code>totalItems</code> → the sum of all <code>quantity</code> values</li>
+<li><code>totalAmount</code> → the sum of <code>price * quantity</code> for every item</li>
+</ul>
+</li>
+<li>Uses the useEffect hook that runs whenever <code>totalItems</code> changes:
+<ul>
+<li>Logs to console the single message: <code>Total items in cart: </code> followed by the value of <code>totalItems</code> (for example: <code>Total items in cart: 3</code>)</li>
+<li>Dependency array must include <code>totalItems</code></li>
+</ul>
+</li>
+<li>Defines two handler functions:
+<ul>
+<li><code>handleIncrease(id)</code> → increases that item's quantity by 1</li>
+<li><code>handleDecrease(id)</code> → decreases that item's quantity by 1, but never below 0</li>
+</ul>
+</li>
+<li>Wraps the whole application inside a Router (BrowserRouter from react-router-dom)</li>
+<li>Renders a div with <code>id="app-container"</code></li>
+<li>Inside it renders:
+<ul>
+<li>A h1 with <code>id="page-title"</code> → displays text: <b>BrewPoint Order Counter</b></li>
+<li>A span with <code>id="total-items"</code> → displays text: <code>Total Items: </code> followed by the value of <code>totalItems</code></li>
+<li>A nav with <code>id="main-nav"</code> containing two Link elements:
+<ul>
+<li>Link to <code>"/"</code> → displays text: <b>Menu</b></li>
+<li>Link to <code>"/summary"</code> → displays text: <b>Summary</b></li>
+</ul>
+</li>
+<li>Routes with two routes:
+<ul>
+<li>Path <code>"/"</code> → renders a div with <code>id="menu-list"</code> that renders a MenuItem for each item, passing <code>itemName</code>, <code>category</code>, <code>price</code>, <code>quantity</code>, <code>onIncrease</code>, <code>onDecrease</code> as props and <code>key</code> → <code>item.id</code></li>
+<li>Path <code>"/summary"</code> → renders the OrderSummary component, passing <code>orderedItems</code> (only the items whose quantity is greater than 0) and <code>totalAmount</code> as props</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The page title, total items badge and nav must stay visible on both routes (they are rendered outside Routes)</li>
+<li>Imports App.css for styling</li>
+</ul>
+
+<h4>MenuItem.jsx</h4>
+<ul>
+<li>Presentational functional component with <b>no state of its own</b> — it receives <code>itemName</code>, <code>category</code>, <code>price</code>, <code>quantity</code>, <code>onIncrease</code> and <code>onDecrease</code> as props</li>
+<li>Renders a div with <code>className="menu-row"</code></li>
+<li>Inside it renders a div with <code>className="item-info"</code> containing:
+<ul>
+<li>A h2 with <code>className="item-name"</code> → displays the value of <code>itemName</code></li>
+<li>A p with <code>className="item-category"</code> → displays text: <code>Category: </code> followed by the value of <code>category</code></li>
+<li>A p with <code>className="item-price"</code> → displays text: <code>Price: $</code> followed by the value of <code>price</code></li>
+</ul>
+</li>
+<li>Then renders a div with <code>className="qty-controls"</code> containing, in order:
+<ul>
+<li>A button with <code>className="decrease-btn"</code> → button text: <b>-</b> → on click calls <code>onDecrease</code></li>
+<li>A span with <code>className="qty-value"</code> → displays the value of <code>quantity</code></li>
+<li>A button with <code>className="increase-btn"</code> → button text: <b>+</b> → on click calls <code>onIncrease</code></li>
+</ul>
+</li>
+<li>Uses PropTypes to validate:
+<ul>
+<li><code>itemName</code> → <code>PropTypes.string.isRequired</code></li>
+<li><code>category</code> → <code>PropTypes.string.isRequired</code></li>
+<li><code>price</code> → <code>PropTypes.number.isRequired</code></li>
+<li><code>quantity</code> → <code>PropTypes.number.isRequired</code></li>
+<li><code>onIncrease</code> → <code>PropTypes.func.isRequired</code></li>
+<li><code>onDecrease</code> → <code>PropTypes.func.isRequired</code></li>
+</ul>
+</li>
+<li>Imports MenuItem.css for styling</li>
+</ul>
+
+<h4>OrderSummary.jsx</h4>
+<ul>
+<li>Functional component rendered by the <code>/summary</code> route, receiving <code>orderedItems</code> and <code>totalAmount</code> as props</li>
+<li>Renders a div with <code>id="order-summary"</code></li>
+<li>Inside it renders:
+<ul>
+<li>A h2 with <code>id="summary-title"</code> → displays text: <b>Order Summary</b></li>
+<li>When <code>orderedItems</code> is empty → a p with <code>id="empty-order"</code> → displays text: <b>No items ordered yet.</b></li>
+<li>When <code>orderedItems</code> is not empty → a ul with <code>id="summary-list"</code> containing one li with <code>className="summary-row"</code> per ordered item, displaying the item name, then <code> x </code>, then the quantity, then <code> = $</code>, then the line total (<code>price * quantity</code>) — for example: <code>Espresso x 2 = $240</code></li>
+<li>A p with <code>id="total-amount"</code> → displays text: <code>Total Amount: $</code> followed by the value of <code>totalAmount</code></li>
+</ul>
+</li>
+<li>Uses PropTypes to validate:
+<ul>
+<li><code>orderedItems</code> → <code>PropTypes.array.isRequired</code></li>
+<li><code>totalAmount</code> → <code>PropTypes.number.isRequired</code></li>
+</ul>
+</li>
+</ul>
+
+<h3>Styling — App.css</h3>
+<ul>
+<li><code>#app-container</code> → max-width 760px, margin 40px auto, padding 24px, background #fdf8f3, border-radius 12px, font-family Arial</li>
+<li><code>#page-title</code> → color #6f4e37, font-size 26px, margin-bottom 8px</li>
+<li><code>#total-items</code> → display inline-block, background #6f4e37, color white, padding 6px 14px, border-radius 20px, font-size 14px, font-weight bold, margin-bottom 16px</li>
+<li><code>#main-nav</code> → display flex, gap 16px, border-bottom 2px solid #e6d6c6, padding-bottom 12px, margin-bottom 20px</li>
+<li><code>#main-nav a</code> → color #6f4e37, font-size 15px, font-weight bold, text-decoration none</li>
+<li><code>#order-summary</code> → padding 8px</li>
+<li><code>#summary-title</code> → color #6f4e37, font-size 20px, margin-bottom 14px</li>
+<li><code>#summary-list</code> → list-style none, padding 0, margin-bottom 16px</li>
+<li><code>.summary-row</code> → padding 10px 12px, border-bottom 1px dashed #e6d6c6, color #555, font-size 15px</li>
+<li><code>#empty-order</code> → color #999, font-size 15px, margin-bottom 16px</li>
+<li><code>#total-amount</code> → color #c98a3f, font-size 18px, font-weight bold</li>
+</ul>
+
+<h3>Styling — MenuItem.css</h3>
+<ul>
+<li><code>.menu-row</code> → display flex, align-items center, justify-content space-between, background white, border-left 5px solid #c98a3f, border-radius 8px, padding 14px 18px, margin-bottom 12px, box-shadow 0 2px 6px rgba(0,0,0,0.08)</li>
+<li><code>.item-info</code> → text-align left</li>
+<li><code>.item-name</code> → color #6f4e37, font-size 18px, margin-bottom 4px</li>
+<li><code>.item-category</code> → color #999, font-size 13px, margin-bottom 2px</li>
+<li><code>.item-price</code> → color #555, font-size 14px, font-weight bold</li>
+<li><code>.qty-controls</code> → display flex, align-items center, gap 12px</li>
+<li><code>.decrease-btn</code>, <code>.increase-btn</code> → background #6f4e37, color white, border none, width 32px, height 32px, border-radius 50%, font-size 18px, cursor pointer</li>
+<li><code>.qty-value</code> → color #6f4e37, font-size 16px, font-weight bold, min-width 20px, text-align center</li>
+</ul>
+
+<h3>Note</h3>
+<ul>
+<li>The text must appear exactly as shown:
+<ul>
+<li>"BrewPoint Order Counter" inside <code>h1#page-title</code></li>
+<li>"Total Items: 0" inside <code>span#total-items</code> before any item is added</li>
+<li>"Menu" and "Summary" as the two nav links inside <code>nav#main-nav</code></li>
+<li>"Category: Hot" inside <code>p.item-category</code></li>
+<li>"Price: $120" inside <code>p.item-price</code></li>
+<li>"-" inside <code>button.decrease-btn</code> and "+" inside <code>button.increase-btn</code></li>
+<li>"Order Summary" inside <code>h2#summary-title</code></li>
+<li>"Espresso x 2 = $240" inside <code>li.summary-row</code></li>
+<li>"Total Amount: $420" inside <code>p#total-amount</code></li>
+<li>"No items ordered yet." inside <code>p#empty-order</code> when nothing is ordered</li>
+</ul>
+</li>
+<li>The quantity state must live in App.js only — MenuItem must not call useState</li>
+<li>Decreasing a quantity that is already 0 must leave it at 0</li>
+<li>Row-level elements use className (not id) because three rows are rendered — ids must stay unique on the page</li>
+<li>No Bootstrap — plain CSS only</li>
+<li>No JSON Server or API calls — the menu data is hardcoded in App.js state</li>
+<li>PropTypes must be imported and used in MenuItem.jsx and OrderSummary.jsx</li>
+<li>useEffect must include <code>totalItems</code> in its dependency array</li>
+<li>Routing must be implemented with react-router-dom (BrowserRouter, Routes, Route, Link)</li>
+</ul>
+
+<h3>Platform Instructions to Run the Application</h3>
+<p>Open the terminal and follow the steps below:</p>
+<p>Step 1: Use <code>cd reactapp</code> command to navigate to the reactapp directory.</p>
+<p>Step 2: Use <code>nvm use 16</code> command to choose the node version.</p>
+<p>Step 3: Use <code>npm i</code> command to install the node_modules.</p>
+<p>Step 4: Use <code>npm start</code> command to start the application.</p>
+
+<h3>Note</h3>
+<ul>
+<li>Click PORT: 8081 to view the output.</li>
+<li>Click Run Test Case button to run the test cases.</li>
+<li>If any error persists while running the app, delete the node_modules and reinstall them.</li>
+<li>Do not rename or remove any existing id, className, text wording, or file from the skeleton — the testcases rely on the exact structure described above.</li>
+</ul>
